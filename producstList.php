@@ -1,4 +1,5 @@
 <?php 
+	session_start();
 	$sanPham1 =array("iphone"=>1000);
 	$sanPham2=array("samsung"=>2000);
 	$sanPham3 =array("htc"=>3000);
@@ -6,6 +7,7 @@
 	$sanPham5 =array("sony"=>5000);
 	$sanPham6 =array("LG"=>6000);
 	if (!empty($_POST["submit_1"])){
+		$arrlength = count($_SESSION["sanpham"]);
 		addarray($_SESSION["sanpham"],$sanPham1);
 	}
 	if (!empty($_POST["submit_2"])){
@@ -23,8 +25,9 @@
 	if (!empty($_POST["submit_6"])){
 		addarray($_SESSION["sanpham"],$sanPham6);
 	}
-function addarray(&$sanpham=array(),$array=array()){
-	 $x = array_unshift($sanpham,$array);
+function addarray($sanpham,$array=array()){
+	  array_splice($sanpham,$array);
+	  return($sanpham);
 }
 ?>
 <!DOCTYPE HTML>
